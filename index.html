@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="CSS/estilo.css" />
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>O Que tem pra Hoje?</h1>
+
+      <form id="formT">
+        <div class="campo-tarefa"></div>
+        <input
+          type="text"
+          autocomplete="off"
+          id="inputT"
+          placeholder="Diga a Tarefa"
+        />
+
+        <button type="submit" id="btn">
+          <i class="bi bi-arrow-down-square-fill"></i>
+        </button>
+      </form>
+
+      <ul id="lista-tarefas" aria-label="ListaTarefas"></ul>
+    </main>
+
+    <script src="JS/script.js" defer></script>
+  </body>
+</html>
