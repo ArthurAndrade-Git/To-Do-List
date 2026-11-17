@@ -12,20 +12,25 @@
   </head>
   <body>
     <main class="container">
+
+      <video class="video-background" autoplay muted loop playsinline aria-hidden="true">
+        <source src="assets/Japna.mp4" type="video/mp4">
+    </video>
       <h1>O Que tem pra Hoje?</h1>
 
       <form id="formT">
-        <div class="campo-tarefa"></div>
+        <div class="campo-tarefa">
         <input
           type="text"
           autocomplete="off"
           id="inputT"
-          placeholder="Diga a Tarefa"
+          placeholder="Digite sua tarefa"
         />
 
         <button type="submit" id="btn">
           <i class="bi bi-arrow-down-square-fill"></i>
         </button>
+        </div>
       </form>
 
       <ul id="lista-tarefas" aria-label="ListaTarefas"></ul>
