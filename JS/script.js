@@ -1,3 +1,5 @@
+const { jsxs } = require("react/jsx-runtime");
+
 const formulario = document.querySelector("#formT");
 const input = document.querySelector("#inputT");
 const lista = document.querySelector("#lista-tarefas");
@@ -20,9 +22,13 @@ const btnConcluir = () =>{
     
     btnC.addEventListener('click' , () => {
         const iconeAtual = btnC.classList.contains('bi-circle');
-    btnC.classList.toggle('bi-check2', iconeAtual);
-    btnC.classList.toggle('bi-circle', !iconeAtual);
+    if(iconeAtual){
+        btnC.classList.replace('bi-circle', 'bi-check2')
+    }else{
+        btnC.classList.replace('bi-check2', 'bi-circle')
+    }
     btnC.parentElement.classList.toggle('tarefaF');
+     salvarDados();
     });
 
     return btnC;
@@ -40,10 +46,36 @@ const btnExcluir = () =>{
     btnE.classList.add('bi', 'bi-trash', 'iconeE');
 
     btnE.addEventListener('click', () =>{
-        btnE.parentElement.remove()
+        btnE.parentElement.remove();
+        salvarDados();
     });
 
     return btnE;
+}
+
+
+const salvarDados = () =>{
+    const tarefa = [...lista.querySelectorAll('li')].map((li) => {
+       return {
+        texto: li.querySelector('span').textContent,
+        concluida: li.classList.contains('tarefaF')
+       };
+    });
+    localStorage.setItem("tarefas", JSON.stringify(tarefa));
+}
+
+const carregarDados = () =>{
+    const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas"));
+    if(!tarefasSalvas) return;
+    tarefasSalvas.forEach((tarefa) => {
+        const criacao = criarT(tarefa.texto);
+
+        if(tarefa.concluida) {
+            criacao.classList.add('tarefaF');
+            criacao.querySelector('i').classList.replace('bi-circle', 'bi-check2');
+        }
+          lista.append(criacao);
+    });
 }
 
 formulario.addEventListener('submit', (event) =>{
@@ -54,5 +86,8 @@ formulario.addEventListener('submit', (event) =>{
     }
     const criacao = criarT(valorInput);
     lista.append(criacao);
+    salvarDados();
     input.value = "";
 })
+
+carregarDados();
