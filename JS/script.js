@@ -1,5 +1,3 @@
-const { jsxs } = require("react/jsx-runtime");
-
 const formulario = document.querySelector("#formT");
 const input = document.querySelector("#inputT");
 const lista = document.querySelector("#lista-tarefas");
